@@ -5,7 +5,6 @@ import { Filter } from './Filter/Filter';
 import { useSelector } from 'react-redux';
 import { getContacts } from 'redux/selectors';
 
-// const LS_KEY = 'contacts';
 const ContactCounter = styled.p`
   margin: 10px auto;
   width: 100px;

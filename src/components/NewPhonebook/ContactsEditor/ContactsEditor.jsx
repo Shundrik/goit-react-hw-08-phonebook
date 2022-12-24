@@ -1,9 +1,7 @@
 import styled from 'styled-components';
-import { nanoid } from 'nanoid'
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-
-import { addContact } from 'redux/slise';
+import { addContact } from '../../../redux/operations';
 
 const CreateContactForm = styled.form`
   display: flex;
@@ -30,16 +28,18 @@ const Button = styled.button`
 `;
 export const ContactsEditor = () => {
   const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  const [phone, setPhone] = useState('');
 
 
   const dispatch = useDispatch();
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(addContact({name,number, id:nanoid()}))
+    dispatch(
+      addContact({name, phone})
+      )
     setName('');
-    setNumber('');
+    setPhone('');
   };
 
   return (
@@ -64,8 +64,8 @@ export const ContactsEditor = () => {
         </CreateContactFormlabel>
 
         <CreateContactFormInput
-          onChange={e => setNumber(e.target.value)}
-          value={number}
+          onChange={e => setPhone(e.target.value)}
+          value={phone}
           type="tel"
           name="number"
           // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"

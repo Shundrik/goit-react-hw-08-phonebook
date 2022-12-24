@@ -1,8 +1,12 @@
-import { useDispatch, useSelector } from 'react-redux';
+import {  useSelector } from 'react-redux';
 import { getContacts, getFilter } from 'redux/selectors';
-import { deleteContact } from 'redux/slise';
+import { deleteContact,  } from "../../../redux/operations";
+import * as contactsOperations from "../../../redux/operations"
+import { useDispatch } from 'react-redux';
+
 
 import styled, { keyframes } from 'styled-components';
+import { useEffect } from 'react';
 
 const ContactsList = styled.ul`
   margin: 0;
@@ -53,16 +57,25 @@ export const ContactList = () => {
   const getContactsFilter = contacts.filter(contact =>
     contact.name.toLowerCase().includes(normalaise)
   );
+useEffect(()=>{
+  dispatch(contactsOperations.fetchContacts())
+},[dispatch])
 
   return (
     <ContactsList>
-      {getContactsFilter.map(({ id, name, number }) => {
+      {getContactsFilter.map(({ id, name, number, phone }) => {
+// 1-422-661-2129 x6551
+        // const phoneNormalize = phone.match(/[х]/gi);
+        // console.log(phoneNormalize);
         return (
           <ContactItem key={id}>
             <p>
-              {name}: {number}
+              {name}: {number || phone}
             </p>
-            <ButtonItem onClick={() => dispatch(deleteContact(id))}>
+            <ButtonItem onClick={
+              // console.log("deleteButton")
+              () => dispatch(deleteContact(id))
+              }>
               Delete
             </ButtonItem>
           </ContactItem>

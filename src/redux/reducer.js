@@ -31,7 +31,66 @@
 //     // });
 
 
+
+// ========= redux vanila HW - 7 =============
+
 //     const initialStateFilter = "";
 //     export const filterReducer = (initialStateFilter, (builder) => {
 //       // .addCase(filter, state.toLoverCase().includes(state.id))
 //     });
+
+// items: [],
+//       isLoading: false,
+//       error: null
+
+// import { fatchContacts } from "./operations"
+// import { createReduser,combineReducers } from "@reduxjs/toolkit"; 
+
+
+// const item = createReduser([],{
+//     [fatchContacts.fulfilled]: (_,action)=>action.payload,
+// });
+
+// const isLoading = createReduser(false,{
+//     [fatchContacts.pending]:()=>true,
+//     [fatchContacts.fulfilled]: ()=>false,
+//     [fatchContacts.rejected]: ()=>false,
+// });
+// const error = createReduser(false,{
+//     [fatchContacts.rejected]:(_,action)=>action.payload,
+//     [fatchContacts.pending]: ()=>null,
+// });
+
+// export  default combineReducers({
+//     item,
+//     isLoading,
+//     error,
+// })
+// ========= redux vanila HW - 7 =============
+// import { combineReducers, createReducer } from "@reduxjs/toolkit";
+// import * as contactsActions from "./actions";
+
+// console.log(contactsActions.fetchContactsError);
+
+// const items = createReducer([],{
+// [contactsActions.fetchContactsSuccess]:(_, action)=>action.payload,
+// });
+
+// const isLoading = createReducer(false,{
+// [contactsActions.fetchContactsRequest]: ()=>true,
+// [contactsActions.fetchContactsSuccess]: ()=>false,
+// [contactsActions.fetchContactsError]: ()=>false,
+// });
+
+// const error = createReducer(null,{
+// [contactsActions.fetchContactsRequest]: ()=>false,
+
+// [contactsActions.fetchContactsError]:(_, action)=> action.payload,
+// });
+
+//   export default combineReducers({
+//     items,
+//     isLoading,
+//     error,
+
+//   }); 

@@ -28,9 +28,6 @@ const handleFilter = (e) =>{
   
 }
 
-
- console.log(filterString);
-
   return (
     <WrapperFindForm>
       <Formlabel htmlFor="filter"> Find contacts by name: </Formlabel>
