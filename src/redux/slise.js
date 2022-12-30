@@ -86,13 +86,13 @@ const contactSlice = createSlice({
 
     [fetchOperations.addContact.fulfilled](state, action) {
       console.log('add fulfilled');
-      const inList = state.items.find(
-        item => item.name.toLowerCase() === action.payload.name.toLowerCase()
-      );
-      inList
-        ? alert(`${action.payload.name} is alrady in contacts`)
-        : state.items.unshift(action.payload);
-
+    //   const inList = state.items.find(
+    //     item => item.name.toLowerCase() === action.payload.name.toLowerCase()
+    //   );
+    //   inList
+        // ? alert(`${action.payload.name} is alrady in contacts`)
+        // : state.items.unshift(action.payload);
+        state.items.unshift(action.payload);
       state.isLoading = false;
       state.error = null;
     },

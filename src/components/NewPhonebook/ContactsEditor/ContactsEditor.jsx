@@ -2,6 +2,9 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addContact } from '../../../redux/operations';
+import { useSelector } from 'react-redux';
+import { getContacts } from 'redux/selectors';
+
 
 const CreateContactForm = styled.form`
   display: flex;
@@ -31,12 +34,26 @@ export const ContactsEditor = () => {
   const [phone, setPhone] = useState('');
 
 
+const contacts = useSelector(getContacts)
+
+const addContacts = ()=>{
+   const inList = contacts.find(
+    item => item.name.toLowerCase() === name.toLowerCase());
+   
+inList
+? alert(`${name} is alrady in contacts`)
+: dispatch(addContact({name, phone}))
+
+// : state.items.unshift(action.payload);
+
+  }
+
   const dispatch = useDispatch();
 
   const handleSubmit = e => {
     e.preventDefault();
     dispatch(
-      addContact({name, phone})
+      addContacts({name, phone})
       )
     setName('');
     setPhone('');
