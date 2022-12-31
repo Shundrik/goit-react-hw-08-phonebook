@@ -1,13 +1,13 @@
-// import { LoginForm } from 'components/loginForm/loginForm';
+import { LoginForm } from 'components/loginForm/loginForm';
 import { Helmet } from 'react-helmet';
 
 export const Login = () => {
   return (
     <div>
         <h1>LOGIN</h1>
-      {/* <Helmet> */}
+      <Helmet>
         <title>Login</title>
-      {/* </Helmet> */}
+      </Helmet>
       <LoginForm />
     </div>
   );
