@@ -15,13 +15,13 @@ dispatch(register({
   password:form.elements.password.value,
 })
 )
-  }
+  };
 
     return(
 <div>
 <h2>Register</h2>
         <form onSubmit={handleSubmit}>
-            <label>Username</label><br/>
+            <label>User name</label><br/>
             <input type="username" name="name"></input><br/>
           
             <label>Email</label><br/>
