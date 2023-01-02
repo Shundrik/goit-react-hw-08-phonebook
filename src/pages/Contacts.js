@@ -1,7 +1,7 @@
 import { NewPhonebook } from 'components/NewPhonebook/NewPhonebook';
 import { Helmet } from 'react-helmet';
 
-export const Contacts = () => {
+export default function Contacts () {
   return (
     <>
        <h1>CONTACTS</h1>
