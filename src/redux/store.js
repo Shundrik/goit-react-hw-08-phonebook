@@ -34,17 +34,51 @@
 
 // export const persistor = persistStore(store);
 
-// ===== HW - 7 , from slice =====
+// ===== HW - 7-8 , from slice =====
 import { configureStore } from '@reduxjs/toolkit';
+import { persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER, } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import { authReducer } from './auth/authSlice';
 import { contactsReducer,  filterReducer } from './slise';
+
+// const middleware = [
+//   ...getDefaultMiddleware({
+//     serializableCheck: {
+//       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+//     },
+//   }),
+// ];
+
+const authPersistConfig = {
+  key:"auth",
+  storage,
+  whitelist:["token"],
+};
+const persistedAuthReducer = persistReducer(authPersistConfig, authReducer);
+
 
 export const store = configureStore({
   reducer: {
+    auth:persistedAuthReducer,
     contacts: contactsReducer,
     filter: filterReducer,
   },
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
 
+export const persistor = persistStore(store);
 // function addCount(){
 //   console.log("проверка изменения стора");
 //         }

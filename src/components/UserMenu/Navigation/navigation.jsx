@@ -1,12 +1,10 @@
-import { NavLink } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 
-export const Navigation = ()=>{
-    return(
-        <>
-              <NavLink to="/">Home</NavLink>
-         {     true && 
-      (<NavLink to="/contacts">Contacts</NavLink>)}
-
-        </>
-    )
-}
+export const Navigation = () => {
+  return (
+    <>
+      <NavLink to="/">Home</NavLink>
+      {true && <NavLink to="/contacts">Contacts</NavLink>}
+    </>
+  );
+};
