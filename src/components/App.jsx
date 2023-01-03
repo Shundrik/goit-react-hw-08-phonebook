@@ -8,6 +8,7 @@ import { Layout } from './Layout';
 // import { AppBar } from './AppBar/appBar';
 
 import { lazy } from 'react';
+import { NoPageFound } from './NoPageFound';
 // import { AppBar } from './AppBar/appBar';
 
 const HomePage = lazy(() => import('../pages/Home'));
@@ -36,6 +37,7 @@ export const App = () => {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/contacts" element={<ContactsPage />} />
         </Route>
+        <Route path="*" element={<NoPageFound/>}></Route>
       </Routes>
     </AppWrapper>
   );
