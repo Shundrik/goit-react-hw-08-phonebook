@@ -1,8 +1,8 @@
 
 import { useDispatch, useSelector } from 'react-redux';
-import {  myFilter } from 'redux/slise';
+import {  myFilter } from 'redux/contacts/slise';
 import styled from 'styled-components';
-import { getFilter } from "../../../redux/selectors"
+import { getFilter } from "../../../redux/contacts/selectors"
 
 
 const WrapperFindForm = styled.div`

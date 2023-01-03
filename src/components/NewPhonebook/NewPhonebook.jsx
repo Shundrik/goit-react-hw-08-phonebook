@@ -3,7 +3,7 @@ import { ContactList } from './ContactList/ContactList';
 import { ContactsEditor } from './ContactsEditor/ContactsEditor';
 import { Filter } from './Filter/Filter';
 import { useSelector } from 'react-redux';
-import { getContacts } from 'redux/selectors';
+import { getContacts } from 'redux/contacts/selectors';
 
 const ContactCounter = styled.p`
   margin: 10px auto;

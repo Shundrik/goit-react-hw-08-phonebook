@@ -36,37 +36,30 @@
 
 // ===== HW - 7-8 , from slice =====
 import { configureStore } from '@reduxjs/toolkit';
-import { persistStore,
+import {
+  persistStore,
   persistReducer,
   FLUSH,
   REHYDRATE,
   PAUSE,
   PERSIST,
   PURGE,
-  REGISTER, } from 'redux-persist';
+  REGISTER,
+} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth/authSlice';
-import { contactsReducer,  filterReducer } from './slise';
-
-// const middleware = [
-//   ...getDefaultMiddleware({
-//     serializableCheck: {
-//       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-//     },
-//   }),
-// ];
+import { contactsReducer, filterReducer } from '././contacts/slise';
 
 const authPersistConfig = {
-  key:"auth",
+  key: 'auth',
   storage,
-  whitelist:["token"],
+  whitelist: ['token'],
 };
 const persistedAuthReducer = persistReducer(authPersistConfig, authReducer);
 
-
 export const store = configureStore({
   reducer: {
-    auth:persistedAuthReducer,
+    auth: persistedAuthReducer,
     contacts: contactsReducer,
     filter: filterReducer,
   },
@@ -84,16 +77,3 @@ export const persistor = persistStore(store);
 //         }
 //   store.subscribe(addCount)
 
-// ===== HW - 7 , vanila Redux  =====
-
-// import { configureStore } from '@reduxjs/toolkit';
-// import contactsReducer from "./reducer"
-
-// export const store = configureStore({
-//   reducer: {
-//     contacts: contactsReducer,
-//     filter: (state = '') => state,
-//   },
-  
-// });
-// console.log(store.getState());

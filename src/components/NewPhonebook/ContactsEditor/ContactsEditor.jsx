@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addContact } from '../../../redux/operations';
+import { addContact } from '../../../redux/contacts/operations';
 import { useSelector } from 'react-redux';
-import { getContacts } from 'redux/selectors';
+import { getContacts } from 'redux/contacts/selectors';
 
 
 const CreateContactForm = styled.form`
@@ -31,7 +31,7 @@ const Button = styled.button`
 `;
 export const ContactsEditor = () => {
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [number, setNumber] = useState('');
 
 
 const contacts = useSelector(getContacts)
@@ -42,7 +42,7 @@ const addContacts = ()=>{
    
 inList
 ? alert(`${name} is alrady in contacts`)
-: dispatch(addContact({name, phone}))
+: dispatch(addContact({name, number}))
 
 // : state.items.unshift(action.payload);
 
@@ -53,12 +53,13 @@ inList
   const handleSubmit = e => {
     e.preventDefault();
     dispatch(
-      addContacts({name, phone})
+      addContacts({name, number})
       )
     setName('');
-    setPhone('');
+    setNumber('');
   };
 
+  
   return (
     <div>
       <CreateContactForm onSubmit={handleSubmit}>
@@ -81,8 +82,8 @@ inList
         </CreateContactFormlabel>
 
         <CreateContactFormInput
-          onChange={e => setPhone(e.target.value)}
-          value={phone}
+          onChange={e => setNumber(e.target.value)}
+          value={number}
           type="tel"
           name="number"
           // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"

@@ -1,15 +1,14 @@
 import { Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
 import { Layout } from './Layout';
-// import { Home } from 'pages/Home';
-// import { RegistrForm } from './RegisterForm/registerForm';
-// import { LoginForm } from './loginForm/loginForm';
-// import { Contacts } from 'pages/Contacts';
-// import { AppBar } from './AppBar/appBar';
-
 import { lazy } from 'react';
 import { NoPageFound } from './NoPageFound';
-// import { AppBar } from './AppBar/appBar';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { useAuth } from 'hooks/hooks';
+import {refreshUser} from "../redux/auth/authOperations"
+import { RestrictedRoute } from './RestrictedRoute';
+import { PrivatRoute } from './PrivatRoute';
 
 const HomePage = lazy(() => import('../pages/Home'));
 const RegisterPage = lazy(() => import('../pages/Register'));
@@ -27,18 +26,23 @@ const AppWrapper = styled.div`
 `;
 
 export const App = () => {
+const dispatch = useDispatch();
+
+useEffect(()=>{dispatch(refreshUser())},[dispatch]);
+
+const { getAuthIsRefreshing } = useAuth();
+
   return (
-    <AppWrapper>
-      {/* <AppBar></AppBar> */}
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<HomePage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/contacts" element={<ContactsPage />} />
-        </Route>
-        <Route path="*" element={<NoPageFound/>}></Route>
-      </Routes>
-    </AppWrapper>
+   !getAuthIsRefreshing && (<AppWrapper>
+   <Routes>
+     <Route path="/" element={<Layout />}>
+       <Route index element={<HomePage />} />
+       <Route path="/register" element={  <RestrictedRoute component={RegisterPage} redirectTo="/contacts" /> } />
+       <Route path="/login" element={ <RestrictedRoute component={LoginPage} redirectTo="/contacts" /> } />
+       <Route path="/contacts" element={ <PrivatRoute component={ContactsPage} redirectTo="/login" /> } />
+     </Route>
+     <Route path="*" element={<NoPageFound/>}></Route>
+   </Routes>
+ </AppWrapper>)
   );
 };

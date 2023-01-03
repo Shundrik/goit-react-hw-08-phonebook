@@ -5,11 +5,12 @@ import { useAuth } from 'hooks/hooks';
 
 export const AppBar = () => {
   const { isLoggedIn } = useAuth();
+
   return (
     <header
       style={{
         display: 'flex',
-        justifyContent: 'space-around',
+        justifyContent: 'space-between',
         borderBottom: '1px solid gold',
         paddingBottom: '10px',
       }}
