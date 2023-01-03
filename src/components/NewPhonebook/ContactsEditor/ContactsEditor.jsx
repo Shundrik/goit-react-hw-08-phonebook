@@ -5,7 +5,6 @@ import { addContact } from '../../../redux/contacts/operations';
 import { useSelector } from 'react-redux';
 import { getContacts } from 'redux/contacts/selectors';
 
-
 const CreateContactForm = styled.form`
   display: flex;
   flex-direction: column;
@@ -33,33 +32,27 @@ export const ContactsEditor = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
+  const contacts = useSelector(getContacts);
 
-const contacts = useSelector(getContacts)
+  const addContacts = () => {
+    const inList = contacts.find(
+      item => item.name.toLowerCase() === name.toLowerCase()
+    );
 
-const addContacts = ()=>{
-   const inList = contacts.find(
-    item => item.name.toLowerCase() === name.toLowerCase());
-   
-inList
-? alert(`${name} is alrady in contacts`)
-: dispatch(addContact({name, number}))
-
-// : state.items.unshift(action.payload);
-
-  }
+    inList
+      ? alert(`${name} is alrady in contacts`)
+      : dispatch(addContact({ name, number }));
+  };
 
   const dispatch = useDispatch();
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(
-      addContacts({name, number})
-      )
+    dispatch(addContacts({ name, number }));
     setName('');
     setNumber('');
   };
 
-  
   return (
     <div>
       <CreateContactForm onSubmit={handleSubmit}>
@@ -70,7 +63,6 @@ inList
           onChange={e => setName(e.target.value)}
           value={name}
           type="text"
-          // name="nameContact"
           name="name"
           // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
