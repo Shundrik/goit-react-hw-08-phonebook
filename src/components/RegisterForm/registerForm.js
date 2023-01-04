@@ -1,39 +1,50 @@
-import { register } from "redux/auth/authOperations";
-import { useDispatch } from "react-redux";
+import { register } from 'redux/auth/authOperations';
+import { useDispatch } from 'react-redux';
+import  css  from './RegisterForm.module.css';
 
-export const RegistrForm =()=>{
+export const RegistrForm = () => {
+  const dispatch = useDispatch();
 
-const dispatch = useDispatch();
+  const handleSubmit = e => {
+    e.preventDefault();
+    const form = e.currentTarget;
 
-const handleSubmit = (e)=>{
-e.preventDefault();
-const form = e.currentTarget;
-
-dispatch(register({
-  name:form.elements.name.value,
-  email:form.elements.email.value,
-  password:form.elements.password.value,
-})
-)
-form.reset()
+    dispatch(
+      register({
+        name: form.elements.name.value,
+        email: form.elements.email.value,
+        password: form.elements.password.value,
+      })
+    );
+    form.reset();
   };
 
-    return(
-<div>
-<h2>Register</h2>
-        <form onSubmit={handleSubmit}>
-            <label>User name</label><br/>
-            <input type="username" name="name"></input><br/>
-          
-            <label>Email</label><br/>
-            <input type="email" name="email"></input><br/>
-
-            <label>Password</label><br/>
-            <input type="password" name="password"></input><br/>
-
-            <button type="submit">Register</button>
+  return (
+    <div>
+      <div className={css.loginBox}>
+        <h2>Register</h2>
+        <form onSubmit={handleSubmit} autoComplete="off">
+          <div className={css.userBox}>
+            <input type="username" name="name" required=" " />
+            <label>Username</label>
+          </div>
+          <div className={css.userBox}>
+            <input type="email" name="email" required=" "/>
+            <label>Email</label>
+          </div>
+          <div className={css.userBox}>
+            <input type="password" name="password" required=" "/>
+            <label>Password</label>
+          </div>
+          <button type="submit">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Submit
+          </button>
         </form>
-</div>
-    )
-
-}
+      </div>
+    </div>
+  );
+};

@@ -23,6 +23,7 @@ const AppWrapper = styled.div`
   background: black;
   color: white;
   list-style: none;
+  font-family: sans-serif;
 `;
 
 export const App = () => {

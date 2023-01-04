@@ -15,17 +15,22 @@ const CreateContactFormlabel = styled.label`
 const CreateContactFormInput = styled.input`
   margin: 5px;
   border-radius: 5px;
+  /* outline-color:#03e9f4; */
 `;
 const Button = styled.button`
+  color: #fff;
   margin: 0 auto;
   justify-content: center;
   max-width: 120px;
   margin-top: 10px;
   padding: 5px 15px;
   border-radius: 5px;
-  background-color: white;
+  background-color: transparent;
+  border: 2px solid#03e9f4;
   &:hover {
-    box-shadow: inset -5px 10px 20px gold;
+    color: #03e9f4;
+    box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 40px #03e9f4,
+      0 0 60px #03e9f4;
   }
 `;
 export const ContactsEditor = () => {
@@ -82,7 +87,7 @@ export const ContactsEditor = () => {
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
         ></CreateContactFormInput>
-        <Button type="submit"> Add contact</Button>
+        <Button type="submit">Add contact</Button>
       </CreateContactForm>
     </div>
   );
