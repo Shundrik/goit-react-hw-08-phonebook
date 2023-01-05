@@ -31,10 +31,9 @@ const dispatch = useDispatch();
 
 useEffect(()=>{dispatch(refreshUser())},[dispatch]);
 
-const { getAuthIsRefreshing } = useAuth();
+const { isRefreshing } = useAuth();
 
-  return (
-   !getAuthIsRefreshing && (<AppWrapper>
+  return isRefreshing ? (<b>Refreshing user... </b>) : (<AppWrapper>
    <Routes>
      <Route path="/" element={<Layout />}>
        <Route index element={<HomePage />} />
@@ -45,5 +44,4 @@ const { getAuthIsRefreshing } = useAuth();
      <Route path="*" element={<NoPageFound/>}></Route>
    </Routes>
  </AppWrapper>)
-  );
 };
