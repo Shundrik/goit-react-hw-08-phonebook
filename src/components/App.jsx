@@ -28,10 +28,10 @@ const AppWrapper = styled.div`
 
 export const App = () => {
 const dispatch = useDispatch();
+const { isRefreshing } = useAuth();
 
 useEffect(()=>{dispatch(refreshUser())},[dispatch]);
 
-const { isRefreshing } = useAuth();
 
   return isRefreshing ? (<b>Refreshing user... </b>) : (<AppWrapper>
    <Routes>
